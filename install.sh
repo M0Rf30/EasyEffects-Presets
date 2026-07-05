@@ -30,10 +30,10 @@ read_choice() {
         if [ -z "$CHOICE" ]; then
             CHOICE=1 #default
         fi
-        if [[ $CHOICE =~ ^[1-9]$ ]]; then
+        if [[ $CHOICE =~ ^([1-9]|1[01])$ ]]; then
             break
         fi
-        echo "Invalid option! Please input a value between 1 and 9!"
+        echo "Invalid option! Please input a value between 1 and 11!"
     done
 }
 
@@ -48,6 +48,8 @@ install_menu() {
     echo "7) Install all GentleDynamics presets"
     echo "8) Install Aurora Immersive preset"
     echo "9) Install Cupertino Laptop Speakers preset"
+    echo "10) Install IRCAM LISTEN HRTF (Subject 1002) preset"
+    echo "11) Install all Utility & Effects presets (Night Listening, Levelizer, Mono Sum, Tiny Speaker Rescue, Analog Warmth, Concert Hall, Movie Dialogue Boost)"
 }
 
 install_presets() {
@@ -181,6 +183,32 @@ install_presets() {
         curl --fail "$GIT_REPOSITORY/Aurora%20Immersive.json" --output "$PRESETS_DIRECTORY/output/Aurora Immersive.json" --silent
         echo "Installing Cupertino Laptop Speakers preset..."
         curl --fail "$GIT_REPOSITORY/Cupertino%20Laptop%20Speakers.json" --output "$PRESETS_DIRECTORY/output/Cupertino Laptop Speakers.json" --silent
+        echo "Installing new HeSuVi virtualization presets (Flux HEar, Razer, OpenAL, SBX 100)..."
+        curl --fail "$GIT_REPOSITORY/HeSuVi%20Flux%20HEar.json" --output "$PRESETS_DIRECTORY/output/HeSuVi Flux HEar.json" --silent
+        curl --fail "$GIT_REPOSITORY/irs/HeSuVi%20Flux%20HEar%20(True%20Stereo%2C%2048kHz).irs" --output "$PRESETS_DIRECTORY/irs/HeSuVi Flux HEar (True Stereo, 48kHz).irs" --silent
+        curl --fail "$GIT_REPOSITORY/HeSuVi%20Razer%20Surround.json" --output "$PRESETS_DIRECTORY/output/HeSuVi Razer Surround.json" --silent
+        curl --fail "$GIT_REPOSITORY/irs/HeSuVi%20Razer%20Surround%20(True%20Stereo%2C%2048kHz).irs" --output "$PRESETS_DIRECTORY/irs/HeSuVi Razer Surround (True Stereo, 48kHz).irs" --silent
+        curl --fail "$GIT_REPOSITORY/HeSuVi%20Razer%20Surround%20Bass%20Fix.json" --output "$PRESETS_DIRECTORY/output/HeSuVi Razer Surround Bass Fix.json" --silent
+        curl --fail "$GIT_REPOSITORY/irs/HeSuVi%20Razer%20Surround%20Bass%20Fix%20(True%20Stereo%2C%2048kHz).irs" --output "$PRESETS_DIRECTORY/irs/HeSuVi Razer Surround Bass Fix (True Stereo, 48kHz).irs" --silent
+        curl --fail "$GIT_REPOSITORY/HeSuVi%20OpenAL%20CIAIR.json" --output "$PRESETS_DIRECTORY/output/HeSuVi OpenAL CIAIR.json" --silent
+        curl --fail "$GIT_REPOSITORY/irs/HeSuVi%20OpenAL%20CIAIR%20(True%20Stereo%2C%2048kHz).irs" --output "$PRESETS_DIRECTORY/irs/HeSuVi OpenAL CIAIR (True Stereo, 48kHz).irs" --silent
+        curl --fail "$GIT_REPOSITORY/HeSuVi%20OpenAL%20CIAIR%20Wide.json" --output "$PRESETS_DIRECTORY/output/HeSuVi OpenAL CIAIR Wide.json" --silent
+        curl --fail "$GIT_REPOSITORY/irs/HeSuVi%20OpenAL%20CIAIR%20Wide%20(True%20Stereo%2C%2048kHz).irs" --output "$PRESETS_DIRECTORY/irs/HeSuVi OpenAL CIAIR Wide (True Stereo, 48kHz).irs" --silent
+        curl --fail "$GIT_REPOSITORY/HeSuVi%20OpenAL%20Default.json" --output "$PRESETS_DIRECTORY/output/HeSuVi OpenAL Default.json" --silent
+        curl --fail "$GIT_REPOSITORY/irs/HeSuVi%20OpenAL%20Default%20(True%20Stereo%2C%2048kHz).irs" --output "$PRESETS_DIRECTORY/irs/HeSuVi OpenAL Default (True Stereo, 48kHz).irs" --silent
+        curl --fail "$GIT_REPOSITORY/HeSuVi%20Sound%20Blaster%20SBX%20100.json" --output "$PRESETS_DIRECTORY/output/HeSuVi Sound Blaster SBX 100.json" --silent
+        curl --fail "$GIT_REPOSITORY/irs/HeSuVi%20Sound%20Blaster%20SBX%20100%20(True%20Stereo%2C%2048kHz).irs" --output "$PRESETS_DIRECTORY/irs/HeSuVi Sound Blaster SBX 100 (True Stereo, 48kHz).irs" --silent
+        echo "Installing IRCAM LISTEN HRTF (Subject 1002) preset..."
+        curl --fail "$GIT_REPOSITORY/IRCAM%20LISTEN%20HRTF%20(Subject%201002).json" --output "$PRESETS_DIRECTORY/output/IRCAM LISTEN HRTF (Subject 1002).json" --silent
+        curl --fail "$GIT_REPOSITORY/irs/IRCAM%20LISTEN%20HRTF%20(Subject%201002%2C%20True%20Stereo%2C%2048kHz).irs" --output "$PRESETS_DIRECTORY/irs/IRCAM LISTEN HRTF (Subject 1002, True Stereo, 48kHz).irs" --silent
+        echo "Installing Utility & Effects presets (Night Listening, Levelizer, Mono Sum, Tiny Speaker Rescue, Analog Warmth, Concert Hall, Movie Dialogue Boost)..."
+        curl --fail "$GIT_REPOSITORY/Night%20Listening.json" --output "$PRESETS_DIRECTORY/output/Night Listening.json" --silent
+        curl --fail "$GIT_REPOSITORY/Levelizer%20(EBU%20R128).json" --output "$PRESETS_DIRECTORY/output/Levelizer (EBU R128).json" --silent
+        curl --fail "$GIT_REPOSITORY/Mono%20Sum%20(Accessibility).json" --output "$PRESETS_DIRECTORY/output/Mono Sum (Accessibility).json" --silent
+        curl --fail "$GIT_REPOSITORY/Tiny%20Speaker%20Rescue.json" --output "$PRESETS_DIRECTORY/output/Tiny Speaker Rescue.json" --silent
+        curl --fail "$GIT_REPOSITORY/Analog%20Warmth.json" --output "$PRESETS_DIRECTORY/output/Analog Warmth.json" --silent
+        curl --fail "$GIT_REPOSITORY/Concert%20Hall.json" --output "$PRESETS_DIRECTORY/output/Concert Hall.json" --silent
+        curl --fail "$GIT_REPOSITORY/Movie%20Dialogue%20Boost.json" --output "$PRESETS_DIRECTORY/output/Movie Dialogue Boost.json" --silent
         ;;
     2)
         echo "Installing all HeSuVi virtualization presets..."
@@ -261,6 +289,21 @@ install_presets() {
         curl --fail "$GIT_REPOSITORY/irs/HeSuVi%20OpenAL%20%2B%2B%20(True%20Stereo%2C%2048kHz).irs" --output "$PRESETS_DIRECTORY/irs/HeSuVi OpenAL ++ (True Stereo, 48kHz).irs" --silent
         curl --fail "$GIT_REPOSITORY/HeSuVi%20OpenAL%20%2B%2B%2B.json" --output "$PRESETS_DIRECTORY/output/HeSuVi OpenAL +++.json" --silent
         curl --fail "$GIT_REPOSITORY/irs/HeSuVi%20OpenAL%20%2B%2B%2B%20(True%20Stereo%2C%2048kHz).irs" --output "$PRESETS_DIRECTORY/irs/HeSuVi OpenAL +++ (True Stereo, 48kHz).irs" --silent
+        echo "Installing new HeSuVi virtualization presets (Flux HEar, Razer, OpenAL, SBX 100)..."
+        curl --fail "$GIT_REPOSITORY/HeSuVi%20Flux%20HEar.json" --output "$PRESETS_DIRECTORY/output/HeSuVi Flux HEar.json" --silent
+        curl --fail "$GIT_REPOSITORY/irs/HeSuVi%20Flux%20HEar%20(True%20Stereo%2C%2048kHz).irs" --output "$PRESETS_DIRECTORY/irs/HeSuVi Flux HEar (True Stereo, 48kHz).irs" --silent
+        curl --fail "$GIT_REPOSITORY/HeSuVi%20Razer%20Surround.json" --output "$PRESETS_DIRECTORY/output/HeSuVi Razer Surround.json" --silent
+        curl --fail "$GIT_REPOSITORY/irs/HeSuVi%20Razer%20Surround%20(True%20Stereo%2C%2048kHz).irs" --output "$PRESETS_DIRECTORY/irs/HeSuVi Razer Surround (True Stereo, 48kHz).irs" --silent
+        curl --fail "$GIT_REPOSITORY/HeSuVi%20Razer%20Surround%20Bass%20Fix.json" --output "$PRESETS_DIRECTORY/output/HeSuVi Razer Surround Bass Fix.json" --silent
+        curl --fail "$GIT_REPOSITORY/irs/HeSuVi%20Razer%20Surround%20Bass%20Fix%20(True%20Stereo%2C%2048kHz).irs" --output "$PRESETS_DIRECTORY/irs/HeSuVi Razer Surround Bass Fix (True Stereo, 48kHz).irs" --silent
+        curl --fail "$GIT_REPOSITORY/HeSuVi%20OpenAL%20CIAIR.json" --output "$PRESETS_DIRECTORY/output/HeSuVi OpenAL CIAIR.json" --silent
+        curl --fail "$GIT_REPOSITORY/irs/HeSuVi%20OpenAL%20CIAIR%20(True%20Stereo%2C%2048kHz).irs" --output "$PRESETS_DIRECTORY/irs/HeSuVi OpenAL CIAIR (True Stereo, 48kHz).irs" --silent
+        curl --fail "$GIT_REPOSITORY/HeSuVi%20OpenAL%20CIAIR%20Wide.json" --output "$PRESETS_DIRECTORY/output/HeSuVi OpenAL CIAIR Wide.json" --silent
+        curl --fail "$GIT_REPOSITORY/irs/HeSuVi%20OpenAL%20CIAIR%20Wide%20(True%20Stereo%2C%2048kHz).irs" --output "$PRESETS_DIRECTORY/irs/HeSuVi OpenAL CIAIR Wide (True Stereo, 48kHz).irs" --silent
+        curl --fail "$GIT_REPOSITORY/HeSuVi%20OpenAL%20Default.json" --output "$PRESETS_DIRECTORY/output/HeSuVi OpenAL Default.json" --silent
+        curl --fail "$GIT_REPOSITORY/irs/HeSuVi%20OpenAL%20Default%20(True%20Stereo%2C%2048kHz).irs" --output "$PRESETS_DIRECTORY/irs/HeSuVi OpenAL Default (True Stereo, 48kHz).irs" --silent
+        curl --fail "$GIT_REPOSITORY/HeSuVi%20Sound%20Blaster%20SBX%20100.json" --output "$PRESETS_DIRECTORY/output/HeSuVi Sound Blaster SBX 100.json" --silent
+        curl --fail "$GIT_REPOSITORY/irs/HeSuVi%20Sound%20Blaster%20SBX%20100%20(True%20Stereo%2C%2048kHz).irs" --output "$PRESETS_DIRECTORY/irs/HeSuVi Sound Blaster SBX 100 (True Stereo, 48kHz).irs" --silent
         ;;
 
     3)
@@ -312,6 +355,23 @@ install_presets() {
     9)
         echo "Installing Cupertino Laptop Speakers preset..."
         curl --fail "$GIT_REPOSITORY/Cupertino%20Laptop%20Speakers.json" --output "$PRESETS_DIRECTORY/output/Cupertino Laptop Speakers.json" --silent
+        ;;
+
+    10)
+        echo "Installing IRCAM LISTEN HRTF (Subject 1002) preset..."
+        curl --fail "$GIT_REPOSITORY/IRCAM%20LISTEN%20HRTF%20(Subject%201002).json" --output "$PRESETS_DIRECTORY/output/IRCAM LISTEN HRTF (Subject 1002).json" --silent
+        curl --fail "$GIT_REPOSITORY/irs/IRCAM%20LISTEN%20HRTF%20(Subject%201002%2C%20True%20Stereo%2C%2048kHz).irs" --output "$PRESETS_DIRECTORY/irs/IRCAM LISTEN HRTF (Subject 1002, True Stereo, 48kHz).irs" --silent
+        ;;
+
+    11)
+        echo "Installing all Utility & Effects presets..."
+        curl --fail "$GIT_REPOSITORY/Night%20Listening.json" --output "$PRESETS_DIRECTORY/output/Night Listening.json" --silent
+        curl --fail "$GIT_REPOSITORY/Levelizer%20(EBU%20R128).json" --output "$PRESETS_DIRECTORY/output/Levelizer (EBU R128).json" --silent
+        curl --fail "$GIT_REPOSITORY/Mono%20Sum%20(Accessibility).json" --output "$PRESETS_DIRECTORY/output/Mono Sum (Accessibility).json" --silent
+        curl --fail "$GIT_REPOSITORY/Tiny%20Speaker%20Rescue.json" --output "$PRESETS_DIRECTORY/output/Tiny Speaker Rescue.json" --silent
+        curl --fail "$GIT_REPOSITORY/Analog%20Warmth.json" --output "$PRESETS_DIRECTORY/output/Analog Warmth.json" --silent
+        curl --fail "$GIT_REPOSITORY/Concert%20Hall.json" --output "$PRESETS_DIRECTORY/output/Concert Hall.json" --silent
+        curl --fail "$GIT_REPOSITORY/Movie%20Dialogue%20Boost.json" --output "$PRESETS_DIRECTORY/output/Movie Dialogue Boost.json" --silent
         ;;
 
     esac
