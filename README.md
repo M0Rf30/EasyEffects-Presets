@@ -27,6 +27,7 @@ Original pure-DSP presets built entirely from EasyEffects' built-in plugins (no 
 - **Analog Warmth** — high-frequency exciter plus a short, subtle reverb for gentle tonal warmth and air.
 - **Concert Hall** — a large-room zita reverb for spacious, ambient music listening. An effect voicing, not a reference curve.
 - **Movie Dialogue Boost** — presence-lift EQ (~2.5 kHz) → multiband compression → de-esser to keep film/TV dialogue intelligible over music and effects.
+- **Reference Transparency** — `filter` (18 Hz subsonic guard, Butterworth Q) → `loudness` (ISO 226-2023 equal-loudness compensation, calibrated to the −20 dBFS "K-20" critical-listening reference level) → `limiter` (−1 dB ceiling, 8x oversampled for true-peak safety, essentially inaudible under normal use). No EQ curve, no exciter/enhancer/compressor/reverb — the philosophy is "the best processing is the one you don't hear": only two additions to a flat pass-through, both backed by measurement standards (Butterworth alignment, ISO 226) rather than taste, plus a safety net that should never audibly engage on well-mastered source material. Set the Loudness *volume* control to your actual monitoring level for the compensation to track correctly.
 
 ### Headphone virtualization (Convolver)
 - **HeSuVi Virtualization Pack** (43 presets) — true-stereo IRs adapted from [HeSuVi](https://sourceforge.net/projects/hesuvi/)'s per-technology HRTF data: Atmos, DTS Headphone:X, GSX, CMSS-3D, Dolby Headphone, DS3D, DVS, Nahimic, Windows Sonic, Sound Blaster SBX (incl. SBX 100), OpenAL (incl. CIAIR & default HRTFs), Razer Surround, Flux HEar and more, with `+`/`++`/`+++` intensity variants. See [Impulse Responses](#impulse-responses).
@@ -67,7 +68,7 @@ Press Enter for the default. The on-screen menu is authoritative if this table d
 | 8 | Aurora Immersive |
 | 9 | Cupertino Laptop Speakers |
 | 10 | IRCAM LISTEN HRTF (Subject 1002) |
-| 11 | Utility & Effects pack (7 presets) |
+| 11 | Utility & Effects pack (8 presets) |
 | 12 | Synthetic Binaural Room |
 | 13 | LibreAtmos |
 | 14 | FLORA pack (4 presets) |

@@ -49,7 +49,7 @@ install_menu() {
     echo "8) Install Aurora Immersive preset"
     echo "9) Install Cupertino Laptop Speakers preset"
     echo "10) Install IRCAM LISTEN HRTF (Subject 1002) preset"
-    echo "11) Install all Utility & Effects presets (Night Listening, Levelizer, Mono Sum, Tiny Speaker Rescue, Analog Warmth, Concert Hall, Movie Dialogue Boost)"
+    echo "11) Install all Utility & Effects presets (Night Listening, Levelizer, Mono Sum, Tiny Speaker Rescue, Analog Warmth, Concert Hall, Movie Dialogue Boost, Reference Transparency)"
     echo "12) Install Synthetic Binaural Room preset"
     echo "13) Install LibreAtmos preset"
     echo "14) Install FLORA presets (Cinema/Music, standard + full marker)"
@@ -210,7 +210,7 @@ install_presets() {
             echo "Installing IRCAM LISTEN HRTF (Subject 1002) preset..."
             curl --fail "$GIT_REPOSITORY/IRCAM%20LISTEN%20HRTF%20(Subject%201002).json" --output "$PRESETS_DIRECTORY/output/IRCAM LISTEN HRTF (Subject 1002).json" --silent
             curl --fail "$GIT_REPOSITORY/irs/IRCAM%20LISTEN%20HRTF%20(Subject%201002%2C%20True%20Stereo%2C%2048kHz).irs" --output "$PRESETS_DIRECTORY/irs/IRCAM LISTEN HRTF (Subject 1002, True Stereo, 48kHz).irs" --silent
-            echo "Installing Utility & Effects presets (Night Listening, Levelizer, Mono Sum, Tiny Speaker Rescue, Analog Warmth, Concert Hall, Movie Dialogue Boost)..."
+            echo "Installing Utility & Effects presets (Night Listening, Levelizer, Mono Sum, Tiny Speaker Rescue, Analog Warmth, Concert Hall, Movie Dialogue Boost, Reference Transparency)..."
             curl --fail "$GIT_REPOSITORY/Night%20Listening.json" --output "$PRESETS_DIRECTORY/output/Night Listening.json" --silent
             curl --fail "$GIT_REPOSITORY/Levelizer%20(EBU%20R128).json" --output "$PRESETS_DIRECTORY/output/Levelizer (EBU R128).json" --silent
             curl --fail "$GIT_REPOSITORY/Mono%20Sum%20(Accessibility).json" --output "$PRESETS_DIRECTORY/output/Mono Sum (Accessibility).json" --silent
@@ -218,6 +218,7 @@ install_presets() {
             curl --fail "$GIT_REPOSITORY/Analog%20Warmth.json" --output "$PRESETS_DIRECTORY/output/Analog Warmth.json" --silent
             curl --fail "$GIT_REPOSITORY/Concert%20Hall.json" --output "$PRESETS_DIRECTORY/output/Concert Hall.json" --silent
             curl --fail "$GIT_REPOSITORY/Movie%20Dialogue%20Boost.json" --output "$PRESETS_DIRECTORY/output/Movie Dialogue Boost.json" --silent
+            curl --fail "$GIT_REPOSITORY/Reference%20Transparency.json" --output "$PRESETS_DIRECTORY/output/Reference Transparency.json" --silent
             echo "Installing FLORA Cinema preset..."
             curl --fail "$GIT_REPOSITORY/FLORA%20Cinema.json" --output "$PRESETS_DIRECTORY/output/FLORA Cinema.json" --silent
             curl --fail "$GIT_REPOSITORY/irs/FLORA%20Binaural%20(True%20Stereo%2C%20marker-stripped%2C%2048kHz).irs" --output "$PRESETS_DIRECTORY/irs/FLORA Binaural (True Stereo, marker-stripped, 48kHz).irs" --silent
@@ -393,6 +394,7 @@ install_presets() {
             curl --fail "$GIT_REPOSITORY/Analog%20Warmth.json" --output "$PRESETS_DIRECTORY/output/Analog Warmth.json" --silent
             curl --fail "$GIT_REPOSITORY/Concert%20Hall.json" --output "$PRESETS_DIRECTORY/output/Concert Hall.json" --silent
             curl --fail "$GIT_REPOSITORY/Movie%20Dialogue%20Boost.json" --output "$PRESETS_DIRECTORY/output/Movie Dialogue Boost.json" --silent
+            curl --fail "$GIT_REPOSITORY/Reference%20Transparency.json" --output "$PRESETS_DIRECTORY/output/Reference Transparency.json" --silent
             ;;
 
         12)
