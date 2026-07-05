@@ -47,6 +47,52 @@ The SOFA presets convolve the whole mix as one virtual source — change azimuth
 
 More community IRs to experiment with: [icy-comet/EasyEffects-presets-impulses](https://github.com/icy-comet/EasyEffects-presets-impulses).
 
+## JamesDSP compatibility
+
+RootlessJamesDSP (Android) and JDSP4Linux (desktop) can reuse most of this collection's Convolver-based
+spatialization even though they're a different app with a different preset format — verified against
+RootlessJamesDSP's own source (`FileLibraryPreference.kt`, `convolver1D.c`, `ParametricEqBandList.kt`).
+`jamesdsp/` holds the pre-built export bundle; it is generated (deterministically, safe to re-run) by
+three scripts and never hand-edited:
+
+- `scripts/generate-jamesdsp-convolver.js` — copies every plain RIFF/WAVE kernel from `irs/` into
+  `jamesdsp/Convolver/` verbatim, byte-for-byte. No conversion needed: JamesDSP's Convolver plugin
+  accepts `.irs`/`.wav`/`.flac` directly and natively supports mono, 2-channel, and 4-channel
+  "true stereo" (`L→L, L→R, R→L, R→R`) kernels — the exact same layout this repo already uses.
+- `scripts/convert-sofa-to-jamesdsp.py` (needs `pip install h5py numpy soundfile`) — JamesDSP has no
+  SOFA/HDF5 support at all, so the two SOFA HRTFs are flattened into fixed-position 4-channel WAVs by
+  extracting the measurements nearest ±30°azimuth/0°elevation (this repo's existing "two virtual
+  speakers" convention, see `generate-synthetic-binaural-room.js`) and building a true-stereo kernel
+  from them. This trades the SOFA presets' live azimuth/elevation steering for a fixed frontal image —
+  the same tradeoff the IRCAM LISTEN preset already accepts.
+- `scripts/generate-jamesdsp-eq.js` — exports every preset's `equalizer#0` curve to EqualizerAPO text
+  format (`jamesdsp/ParametricEQ/<preset>.txt`), importable via JamesDSP's Parametric EQ. This repo only
+  ever uses `Bell`/`Lo-shelf`/`Hi-shelf` bands, which map losslessly to JamesDSP's supported `PK`/`LSC`/
+  `HSC` filter types — no approximation involved.
+
+Run `./scripts/validate-jamesdsp.sh` to check the bundle is complete and well-formed (mirrors what
+`validate-presets.sh` does for the EasyEffects side).
+
+**Deploying to Android:** with the device connected via `adb` and RootlessJamesDSP installed, push the
+bundle straight into its external files dir:
+```shell
+adb push jamesdsp/Convolver/. "/sdcard/Android/data/me.timschneeberger.rootlessjamesdsp/files/Convolver/"
+```
+Then import the matching `.txt` from `jamesdsp/ParametricEQ/` via the Parametric EQ tab's import button
+for presets that have one. On desktop (JDSP4Linux), copy the same files into
+`~/.config/jamesdsp/irs/` (or the Flatpak equivalent) instead.
+
+**What doesn't carry over:** JamesDSP has its own Limiter (set an output ceiling to taste — every
+Convolver preset here pairs the kernel with a `limiter` for safety only) and Bass Boost, but no
+file-importable equivalent for EasyEffects' multiband compressor, exciter, crystalizer, de-esser,
+reverb, or stereo tools. The 12 presets built entirely from those plugins with no convolver — GentleDynamics
+(×3), Aurora Immersive, Cupertino Laptop Speakers, Night Listening, Levelizer, Mono Sum, Tiny Speaker
+Rescue, Analog Warmth, Concert Hall, Movie Dialogue Boost — have no data file to hand off for those
+stages; only Aurora Immersive's EQ+crossfeed pair and Movie Dialogue Boost's EQ are exported (crossfeed
+itself has a native JamesDSP equivalent — both apps implement the same Bauer stereophonic-to-binaural
+algorithm — but isn't yet ported by these scripts, so re-enable it manually with matching feed/cutoff).
+LibreAtmos's `autogain`/`bass_enhancer` stages are likewise not exported, only its EQ and convolver.
+
 ## Installation
 
 ```shell
